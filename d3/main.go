@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	data, err := input.Strings("d3/testdata/input")
+	data, err := input.Strings("d3/testdata/input", true)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func Strings(filename string) ([]string, error) {
+func Strings(filename string, skipEmptyLines bool) ([]string, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
@@ -18,10 +18,11 @@ func Strings(filename string) ([]string, error) {
 	data := make([]string, 0)
 
 	for scanner.Scan() {
-		t := scanner.Text()
-		if len(t) > 0 {
-			data = append(data, scanner.Text())
+		if len(scanner.Text()) == 0 && !skipEmptyLines {
+			continue
 		}
+
+		data = append(data, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {

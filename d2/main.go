@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	data, err := input.Strings("d2/testdata/input")
+	data, err := input.Strings("d2/testdata/input", true)
 	if err != nil {
 		log.Fatal(err)
 	}
