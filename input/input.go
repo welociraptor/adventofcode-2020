@@ -18,11 +18,9 @@ func Strings(filename string, skipEmptyLines bool) ([]string, error) {
 	data := make([]string, 0)
 
 	for scanner.Scan() {
-		if len(scanner.Text()) == 0 && !skipEmptyLines {
-			continue
+		if len(scanner.Text()) != 0 || !skipEmptyLines {
+			data = append(data, scanner.Text())
 		}
-
-		data = append(data, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {
